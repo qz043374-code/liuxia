@@ -2,13 +2,14 @@ import OpenAI from 'openai'
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
+  baseURL: 'https://api.deepseek.com',
 })
 
 export async function generateMessage(name: string, nickname: string): Promise<string> {
   const prompt = `你是一位即将毕业的学生，正在为你的同学${name}（昵称：${nickname}）写毕业留言。请写一段温暖、真诚、充满回忆的毕业留言，字数在100-200字之间。要体现青春、友谊和对未来的祝福。`
 
   const response = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo',
+    model: 'deepseek-chat',
     messages: [
       {
         role: 'system',

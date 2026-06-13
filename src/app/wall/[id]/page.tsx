@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "next/navigation";
+import { trackPageView } from "@/lib/tracker";
 
 interface Member {
   id: string;
@@ -29,6 +30,8 @@ export default function WallPage() {
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
 
   useEffect(() => {
+    trackPageView("wall", params.id as string);
+
     const fetchData = async () => {
       try {
         const classRes = await fetch(`/api/classes/${params.id}`);

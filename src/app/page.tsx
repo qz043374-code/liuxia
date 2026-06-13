@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { trackPageView } from "@/lib/tracker";
 
 interface MyClass {
   id: string;
@@ -17,6 +18,7 @@ export default function Home() {
 
   useEffect(() => {
     setVisible(true);
+    trackPageView("home");
     const saved = localStorage.getItem("myClasses");
     if (saved) {
       setMyClasses(JSON.parse(saved));

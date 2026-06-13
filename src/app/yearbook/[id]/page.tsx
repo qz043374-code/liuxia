@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
+import { trackPageView } from "@/lib/tracker";
 
 interface Member {
   id: string;
@@ -29,6 +30,8 @@ export default function YearbookPage() {
   const yearbookRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    trackPageView("yearbook", params.id as string);
+
     const fetchData = async () => {
       try {
         const [classRes, membersRes] = await Promise.all([

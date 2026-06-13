@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
+import { trackPageView } from "@/lib/tracker";
 
 export default function FillPage() {
   const params = useParams();
@@ -13,6 +14,10 @@ export default function FillPage() {
   const [avatarUploading, setAvatarUploading] = useState(false);
   const [classData, setClassData] = useState<any>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    trackPageView("fill", params.id as string);
+  }, [params.id]);
   const avatarFileInputRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState({
     name: "",

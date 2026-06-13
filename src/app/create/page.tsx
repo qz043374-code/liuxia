@@ -1,11 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { trackPageView } from "@/lib/tracker";
 
 export default function CreatePage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    trackPageView("create");
+  }, []);
   const [form, setForm] = useState({
     school: "",
     grade: "",
